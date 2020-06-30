@@ -1,0 +1,14 @@
+../../bin/jsondiff,sha256=qMZN4U-00uxFc0FJ8ReGgm3DWxhFgtyzwr5x6JwzM-c,239
+jsondiff-1.1.2.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+jsondiff-1.1.2.dist-info/LICENSE,sha256=FIDXLds7nS2NXc1G4MNYHRH6aEb7uQWUfO0bLHo4pMQ,1088
+jsondiff-1.1.2.dist-info/METADATA,sha256=9jqlPiG12rR7m-yw1XbueghiY4WwNBcScFA8qQTVBxc,490
+jsondiff-1.1.2.dist-info/RECORD,,
+jsondiff-1.1.2.dist-info/WHEEL,sha256=g4nMs7d-Xl9-xC9XovUrsDHGXt-FT0E17Yqo92DEfvY,92
+jsondiff-1.1.2.dist-info/entry_points.txt,sha256=cBEIe0lYlZhpQLqDpLpH6zwmdNIZWJA5pDUOJeZgb0Y,48
+jsondiff-1.1.2.dist-info/top_level.txt,sha256=oK_hfsYTZbMypy3gXevBmFBW6qXYFpk20t8oBZfnSog,9
+jsondiff/__init__.py,sha256=VFKaj3rrXpG-ata0mQxmiDLv3UYUzGv382qqEiLjeh0,18302
+jsondiff/__pycache__/__init__.cpython-37.pyc,,
+jsondiff/__pycache__/cli.cpython-37.pyc,,
+jsondiff/__pycache__/symbols.cpython-37.pyc,,
+jsondiff/cli.py,sha256=P8KVo1fSC_EPCFKxnB0fp4smEKGLIzL4Z9KXb7rceBg,1085
+jsondiff/symbols.py,sha256=yIpdgAVTh1ahGoB3E6Xc8AAxYXoXe4o-RlP6NoogWoM,763
