@@ -9,7 +9,7 @@ import boto.kms
 from moto.core import BaseBackend, BaseModel
 from moto.core.utils import iso_8601_datetime_without_milliseconds
 
-from .utils import decrypt, encrypt, generate_key_id, generate_master_key
+from .utils import decrypt, encrypt, generate_key_id, generate_main_key
 
 
 class Key(BaseModel):
@@ -25,7 +25,7 @@ class Key(BaseModel):
         self.key_rotation_status = False
         self.deletion_date = None
         self.tags = tags or {}
-        self.key_material = generate_master_key()
+        self.key_material = generate_main_key()
 
     @property
     def physical_resource_id(self):
@@ -223,7 +223,7 @@ class KmsBackend(BaseBackend):
         key_id = self.any_id_to_key_id(key_id)
 
         ciphertext_blob = encrypt(
-            master_keys=self.keys,
+            main_keys=self.keys,
             key_id=key_id,
             plaintext=plaintext,
             encryption_context=encryption_context,
@@ -233,7 +233,7 @@ class KmsBackend(BaseBackend):
 
     def decrypt(self, ciphertext_blob, encryption_context):
         plaintext, key_id = decrypt(
-            master_keys=self.keys,
+            main_keys=self.keys,
             ciphertext_blob=ciphertext_blob,
             encryption_context=encryption_context,
         )

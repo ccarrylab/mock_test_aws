@@ -186,7 +186,7 @@ class Queue(BaseModel):
         "VisibilityTimeout",
     ]
     FIFO_ATTRIBUTES = ["FifoQueue", "ContentBasedDeduplication"]
-    KMS_ATTRIBUTES = ["KmsDataKeyReusePeriodSeconds", "KmsMasterKeyId"]
+    KMS_ATTRIBUTES = ["KmsDataKeyReusePeriodSeconds", "KmsMainKeyId"]
     ALLOWED_PERMISSIONS = (
         "*",
         "ChangeMessageVisibility",
@@ -221,7 +221,7 @@ class Queue(BaseModel):
             "DelaySeconds": 0,
             "FifoQueue": "false",
             "KmsDataKeyReusePeriodSeconds": 300,  # five minutes
-            "KmsMasterKeyId": None,
+            "KmsMainKeyId": None,
             "MaximumMessageSize": int(64 << 10),
             "MessageRetentionPeriod": 86400 * 4,  # four days
             "Policy": None,
@@ -399,7 +399,7 @@ class Queue(BaseModel):
                 attr = getattr(self, camelcase_to_underscores(attribute))
                 result[attribute] = attr
 
-        if self.kms_master_key_id:
+        if self.kms_main_key_id:
             for attribute in self.KMS_ATTRIBUTES:
                 attr = getattr(self, camelcase_to_underscores(attribute))
                 result[attribute] = attr
@@ -504,7 +504,7 @@ class SQSBackend(BaseBackend):
                 "ReceiveMessageWaitTimeSeconds",
                 "RedrivePolicy",
                 "VisibilityTimeout",
-                "KmsMasterKeyId",
+                "KmsMainKeyId",
                 "KmsDataKeyReusePeriodSeconds",
                 "FifoQueue",
                 "ContentBasedDeduplication",
