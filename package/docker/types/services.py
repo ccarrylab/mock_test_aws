@@ -205,7 +205,7 @@ class Mount(dict):
         consistency (string): The consistency requirement for the mount. One of
         ``default```, ``consistent``, ``cached``, ``delegated``.
         propagation (string): A propagation mode with the value ``[r]private``,
-          ``[r]shared``, or ``[r]slave``. Only valid for the ``bind`` type.
+          ``[r]shared``, or ``[r]subordinate``. Only valid for the ``bind`` type.
         no_copy (bool): False if the volume should be populated with the data
           from the target. Default: ``False``. Only valid for the ``volume``
           type.

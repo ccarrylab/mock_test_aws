@@ -2,7 +2,7 @@
 
 """
 =============
-Chess Masters
+Chess Mains
 =============
 
 An example of the MultiDiGraph clas
@@ -11,13 +11,13 @@ The function chess_pgn_graph reads a collection of chess matches stored in the
 specified PGN file (PGN ="Portable Game Notation").  Here the (compressed)
 default file::
 
-    chess_masters_WCC.pgn.bz2
+    chess_mains_WCC.pgn.bz2
 
 contains all 685 World Chess Championship matches from 1886--1985.
 (data from http://chessproblem.my-free-games.com/chess/games/Download-PGN.php)
 
 The `chess_pgn_graph()` function returns a `MultiDiGraph` with multiple edges.
-Each node is the last name of a chess master. Each edge is directed from white
+Each node is the last name of a chess main. Each edge is directed from white
 to black and contains selected game info.
 
 The key statement in `chess_pgn_graph` below is::
@@ -45,7 +45,7 @@ game_details = ["Event",
                 "Site"]
 
 
-def chess_pgn_graph(pgn_file="chess_masters_WCC.pgn.bz2"):
+def chess_pgn_graph(pgn_file="chess_mains_WCC.pgn.bz2"):
     """Read chess games in pgn format in pgn_file.
 
     Filenames ending in .gz or .bz2 will be uncompressed.

@@ -71,8 +71,8 @@ class Cluster(TaggableResourceMixin, BaseModel):
         redshift_backend,
         cluster_identifier,
         node_type,
-        master_username,
-        master_user_password,
+        main_username,
+        main_user_password,
         db_name,
         cluster_type,
         cluster_security_groups,
@@ -102,8 +102,8 @@ class Cluster(TaggableResourceMixin, BaseModel):
         )
         self.status = "available"
         self.node_type = node_type
-        self.master_username = master_username
-        self.master_user_password = master_user_password
+        self.main_username = main_username
+        self.main_user_password = main_user_password
         self.db_name = db_name if db_name else "dev"
         self.vpc_security_group_ids = vpc_security_group_ids
         self.enhanced_vpc_routing = (
@@ -172,8 +172,8 @@ class Cluster(TaggableResourceMixin, BaseModel):
         cluster = redshift_backend.create_cluster(
             cluster_identifier=resource_name,
             node_type=properties.get("NodeType"),
-            master_username=properties.get("MasterUsername"),
-            master_user_password=properties.get("MasterUserPassword"),
+            main_username=properties.get("MainUsername"),
+            main_user_password=properties.get("MainUserPassword"),
             db_name=properties.get("DBName"),
             cluster_type=properties.get("ClusterType"),
             cluster_security_groups=properties.get("ClusterSecurityGroups", []),
@@ -243,8 +243,8 @@ class Cluster(TaggableResourceMixin, BaseModel):
 
     def to_json(self):
         json_response = {
-            "MasterUsername": self.master_username,
-            "MasterUserPassword": "****",
+            "MainUsername": self.main_username,
+            "MainUserPassword": "****",
             "ClusterVersion": self.cluster_version,
             "VpcSecurityGroups": [
                 {"Status": "active", "VpcSecurityGroupId": group.id}
@@ -486,7 +486,7 @@ class Snapshot(TaggableResourceMixin, BaseModel):
             "Status": self.status,
             "Port": self.cluster.port,
             "AvailabilityZone": self.cluster.availability_zone,
-            "MasterUsername": self.cluster.master_username,
+            "MainUsername": self.cluster.main_username,
             "ClusterVersion": self.cluster.cluster_version,
             "SnapshotType": self.snapshot_type,
             "NodeType": self.cluster.node_type,
@@ -772,8 +772,8 @@ class RedshiftBackend(BaseBackend):
         )[0]
         create_kwargs = {
             "node_type": snapshot.cluster.node_type,
-            "master_username": snapshot.cluster.master_username,
-            "master_user_password": snapshot.cluster.master_user_password,
+            "main_username": snapshot.cluster.main_username,
+            "main_user_password": snapshot.cluster.main_user_password,
             "db_name": snapshot.cluster.db_name,
             "cluster_type": "multi-node"
             if snapshot.cluster.number_of_nodes > 1
