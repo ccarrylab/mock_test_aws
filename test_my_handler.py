@@ -9,7 +9,7 @@ from os import getenv
 from datetime import datetime, timedelta, tzinfo, timezone
 from aws_lambda_context import LambdaContext
 
-SUBSCRIPTORS_TO_REPORT = getenv('SUBSCRIPTORS_TO_REPORT', 'boost-aws@sprint.com')
+SUBSCRIPTORS_TO_REPORT = getenv('SUBSCRIPTORS_TO_REPORT', 'testlambda1@mailinator.com')
 
 @mock_sns
 def test_get_subs_endpoint():
@@ -18,9 +18,9 @@ def test_get_subs_endpoint():
     resp = client.create_topic(Name="my-topic")
     arn = resp["TopicArn"]
     # print(arn)
-    resp = client.subscribe(TopicArn=arn, Protocol="email", Endpoint="boost-aws@sprint.com")
-    resp = client.subscribe(TopicArn=arn, Protocol="email", Endpoint="cohen.carryl@sprint.com")
-    assert get_subs_endpoint(arn) == ['boost-aws@sprint.com','cohen.carryl@sprint.com']
+    resp = client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda1@mailinator.com")
+    resp = client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda2@mailinator.com")
+    assert get_subs_endpoint(arn) == ['testlambda1@mailinator.com','testlambda2@mailinator.com']
     print("=========================================")
     print("test_get_subs_endpoint ran successful")
     print("=========================================")
@@ -34,16 +34,16 @@ def test_get_alarms():
     client.create_topic(Name="my-topic")
     resp = client.create_topic(Name="my-topic")
     arn = resp["TopicArn"]
-    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="boost-aws@sprint.com")
-    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="cohen.carryl@sprint.com")
+    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda1@mailinator.com")
+    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda2@mailinator.com")
     start_date = '2020-06-24T18:59:06.442Z'
     resp = get_alarms(start_date, end_date = None, offset = None)
-    assert resp['myalarm']['end_points'] == ['boost-aws@sprint.com', 'cohen.carryl@sprint.com']
+    assert resp['myalarm']['end_points'] == ['testlambda1@mailinator.com', 'testlambda2@mailinator.com']
     assert resp['myalarm']['count'] == 3
 
     offset = 2
     resp = get_alarms(start_date, end_date = None, offset = offset)
-    assert resp['myalarm']['end_points'] == ['boost-aws@sprint.com', 'cohen.carryl@sprint.com']
+    assert resp['myalarm']['end_points'] == ['testlambda1@mailinator.com', 'testlambda2@mailinator.com']
     assert resp['myalarm']['count'] == 3
 
     print("=========================================")
@@ -59,8 +59,8 @@ def test_get_alarm_to_report():
     client.create_topic(Name="my-topic")
     resp = client.create_topic(Name="my-topic")
     arn = resp["TopicArn"]
-    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="boost-aws@sprint.com")
-    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="cohen.carryl@sprint.com")
+    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda1@mailinator.com")
+    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda2@mailinator.com")
     start_date = '2020-06-24T18:59:06.442Z'
 
     event = {'date': '2020-06-24T18:59:06.442Z',
@@ -133,8 +133,8 @@ def test_lambda_handler():
     client.create_topic(Name="my-topic")
     resp = client.create_topic(Name="my-topic")
     arn = resp["TopicArn"]
-    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="boost-aws@sprint.com")
-    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="cohen.carryl@sprint.com")
+    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda1@mailinator.com")
+    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda2@mailinator.com")
     start_date  = '2020-06-24T18:59:06.442Z'
 
     event = {'date': '2020-06-24T18:59:06.442Z',
@@ -161,8 +161,8 @@ def test_lambda_handler_without_event():
     client.create_topic(Name="my-topic")
     resp = client.create_topic(Name="my-topic")
     arn = resp["TopicArn"]
-    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="boost-aws@sprint.com")
-    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="cohen.carryl@sprint.com")
+    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda1@mailinator.com")
+    client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda2@mailinator.com")
     start_date  = '2020-06-24T18:59:06.442Z'
 
     event = {'format': 'html'}
@@ -183,9 +183,9 @@ def test_get_subs_endpoint_exception_paginator():
     resp = client.create_topic(Name="my-topic")
     arn = resp["TopicArn"]
     # print(arn)
-    resp = client.subscribe(TopicArn=arn, Protocol="email", Endpoint="boost-aws@sprint.com")
-    resp = client.subscribe(TopicArn=arn, Protocol="email", Endpoint="cohen.carryl@sprint.com")
-    assert test_get_subs_endpoint('Test  to Fail with Exception') == ['boost-aws@sprint.com','cohen.carryl@sprint.com']
+    resp = client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda1@mailinator.com")
+    resp = client.subscribe(TopicArn=arn, Protocol="email", Endpoint="testlambda2@mailinator.com")
+    assert test_get_subs_endpoint('Test  to Fail with Exception') == ['testlambda1@mailinator.com','testlambda2@mailinator.com']
     print("=========================================")
     print("test_get_subs_endpoint ran successful")
     print("=========================================")
