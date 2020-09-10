@@ -57,8 +57,6 @@ and modify it according to your alarms and need to modify the test cases accordi
 
 - In the testing we use environment variable SUBSCRIPTORS_TO_REPORT.
 If there is no data get found in that variable then by default it will take 'testlambda1@mailinator.com' as a value.
-And if any emails get sent to 'testlambda1@mailinator.com' then you can see those by hitting the below url:
-https://www.mailinator.com/v3/index.jsp?zone=public&query=testlambda1
 
 
 ### Deactivate the virtual environment
