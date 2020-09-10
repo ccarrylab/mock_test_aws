@@ -6,7 +6,7 @@ import time
 from os import getenv
 from datetime import datetime, timedelta, tzinfo, timezone
 
-# SUBSCRIPTORS_TO_REPORT = getenv('SUBSCRIPTORS_TO_REPORT', 'hoopers-aws@abc.com')
+# SUBSCRIPTORS_TO_REPORT = getenv('SUBSCRIPTORS_TO_REPORT', 'testlambda1@mailinator.com')
 SUBSCRIPTORS_TO_REPORT = getenv('SUBSCRIPTORS_TO_REPORT', 'testlambda1@mailinator.com')
 
 def get_subs_endpoint(topic):
