@@ -126,6 +126,8 @@ def get_alarm_to_report(subscriptors, start_date, end_date = None, offset = None
 
             alarms_to_report.append( {"Alarm": alarm, "# Events" : alarms[alarm]['count'], "Description" : "Test Description", "Status / JIRA Ticket" : "Test Jira Ticket 123" } )
 
+#This is not a acutually feature, just testing out a Gitlab security feature
+    aws_key = "348EEE45895CBBEF9FB7F1A44BDE3"
 
 
 
