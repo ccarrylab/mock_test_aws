@@ -124,6 +124,9 @@ def test_get_alarm_to_report():
     print("=========================================")
     print("test_get_alarm_to_report ran successful")
     print("=========================================")
+    
+    ##This is not a acutually feature, just testing out a Gitlab security feature
+    aws_key = "348EEE45895CBBEF9FB7F1A44BDE3"
 
 @mock_cloudwatch
 @mock_sns
