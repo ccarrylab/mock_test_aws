@@ -10,7 +10,7 @@ cffi==1.14.0
 cfn-lint==0.33.2
 chardet==3.0.4
 coverage==5.1
-cryptography==2.9.2
+cryptography==3.2
 decorator==4.4.2
 docker==4.2.1
 docutils==0.15.2
