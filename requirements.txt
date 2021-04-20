@@ -35,7 +35,7 @@ networkx==2.4
 packaging==20.4
 pip-autoremove==0.9.1
 pluggy==0.13.1
-py==1.8.2
+py==1.10.0
 pyasn1==0.4.8
 pycparser==2.20
 pyparsing==2.4.7
